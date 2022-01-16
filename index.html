@@ -1,0 +1,19 @@
+<div id="app" class="container">
+  <ul class="items-list">
+    <li v-for="item in displayedItems" class="item" v-html="item"></li>
+  </ul>
+
+  <ul class="page">
+    <li class="page__btn" :class="{'active' : (currentPage != 1)}" @click="currentPage--"><span class="material-icons">chevron_left</span></li>
+
+    <li class="page__numbers" @click="currentPage = 1" v-if="currentPage > 3"> {{pages[0]}}</li>
+    <li class="page__dots" v-if="currentPage > 3">...</li>
+
+    <li class="page__numbers" v-for="pageNumber in displayedPages" @click="currentPage = pageNumber" :class="{'active' : (currentPage === (pageNumber))}">{{pageNumber}}</li>
+
+    <li class="page__dots" v-if="currentPage < pages.length - 2">...</li>
+    <li class="page__numbers" @click="currentPage = pages.length" v-if="currentPage < pages.length - 2"> {{pages[pages.length - 1]}}</li>
+
+    <li class="page__btn" :class="{'active' : (currentPage < pages.length)}" @click="currentPage++"><span class="material-icons">chevron_right</span></li>
+  </ul>
+</div>
